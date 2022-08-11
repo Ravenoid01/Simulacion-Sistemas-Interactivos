@@ -8,8 +8,6 @@ public class MyVector
     public float x;
     public float y;
 
-
-
     public MyVector(float x, float y)
     {
         this.x = x;
