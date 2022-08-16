@@ -27,9 +27,10 @@ public class TestVelocity : MonoBehaviour
         velocity.Draw(Color.cyan, position);
         aceleration.Draw(Color.green, position);
 
+        // Codigo para que rebote en la paredes
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            velocity.x = 0; velocity.y = 0;
+            velocity *= 0;
             switch (currentIndex)
             {
                 case 0:
