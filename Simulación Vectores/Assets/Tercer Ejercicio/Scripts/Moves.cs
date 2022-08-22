@@ -2,21 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestVelocity : MonoBehaviour
+public class Moves : MonoBehaviour
 {
-
+    //private Transform target;
+    [SerializeField] private Transform target;
+    [SerializeField] private MyVector force;
     [SerializeField] private MyVector aceleration;
     [SerializeField] private MyVector velocity;
     [SerializeField] private MyVector displacement;
     private MyVector position;
-    int currentIndex;
+
+    int currentIndex = 0;
     //List<MyVector> aceleraciones = new List<MyVector>();
 
     // Start is called before the first frame update
     void Start()
     {
         position = transform.position;
-        currentIndex = 0;
+    }
+    private void FixedUpdate()
+    {
+        //Cambiar la posición
+        Move();
+
     }
 
     // Update is called once per frame
@@ -53,34 +61,30 @@ public class TestVelocity : MonoBehaviour
             }
         }
 
-    }
-    private void FixedUpdate()
-    {
-        //Cambiar la posición
-        Move();
+        aceleration = target.position - transform.position;
 
     }
 
     public void Move()
     {
-        velocity = velocity + aceleration * Time.fixedDeltaTime;
-        displacement = velocity * Time.fixedDeltaTime;
-        position += displacement;
+        velocity += aceleration * Time.fixedDeltaTime;
+        position += velocity * Time.fixedDeltaTime;
 
-        if (Mathf.Abs(position.x) > 5)
-        {
-            //Devuelve 1 si es positivo o -1 si es negativo
-            position.x = Mathf.Sign(position.x) * 5;
-            velocity.x *= -1;
+        //if (mathf.abs(position.x) > 5)
+        //{
+        //    //devuelve 1 si es positivo o -1 si es negativo
+        //    position.x = mathf.sign(position.x) * 5;
+        //    velocity.x *= -1;
 
-        }
-        if (Mathf.Abs(position.y) > 5)
-        {
-            position.y = Mathf.Sign(position.y) * 5;
-            velocity.y *= -1;
-        }
+        //}
+        //if (mathf.abs(position.y) > 5)
+        //{
+        //    position.y = mathf.sign(position.y) * 5;
+        //    velocity.y *= -1;
+        //}
 
         transform.position = position;
 
     }
+
 }

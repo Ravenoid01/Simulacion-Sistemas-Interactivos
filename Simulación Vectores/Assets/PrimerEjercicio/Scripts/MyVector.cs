@@ -53,4 +53,9 @@ public class MyVector
     {
         return new MyVector(a.x, a.y);
     }
+    public static MyVector operator /(MyVector a, float b)
+    {
+        return new MyVector(a.x / b, a.y / b);
+    }
+
 }
