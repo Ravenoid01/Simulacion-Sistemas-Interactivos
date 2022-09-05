@@ -3,16 +3,44 @@ using UnityEngine;
 using System.Reflection;
 
 [System.Serializable]
-public class MyVector 
+public class MyVector
 {
     public float x;
     public float y;
+    public float magnitude => Mathf.Sqrt(x * x + y * y);
+    public MyVector normalized
+    {
+        get
+        {
+            float distance = magnitude;
+            if(distance < 0.0001)
+            {
+                return new MyVector(0, 0);
+            }
+            return new MyVector(x / distance, y / distance);
 
+        }   
+    }
     public MyVector(float x, float y)
     {
         this.x = x;
         this.y = y;
 
+    }
+    public MyVector Normalize()
+    {
+        float magnitudeCache = magnitude;
+        if(magnitudeCache < 0.00001)
+        {
+            y = 0;
+            x = 0;
+        }
+        else
+        {
+            x /= magnitudeCache;
+            y /= magnitudeCache;
+        }
+        return new MyVector(x, y);
     }
     public void Draw(Color color)
     {
@@ -57,5 +85,6 @@ public class MyVector
     {
         return new MyVector(a.x / b, a.y / b);
     }
-
+   
+    
 }
