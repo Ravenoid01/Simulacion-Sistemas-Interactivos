@@ -13,7 +13,7 @@ public class MovePhysics : MonoBehaviour
     [SerializeField] private MyVector aceleration;
     [SerializeField] private MyVector velocity;
     private MyVector position;
-    [SerializeField] private bool useFluid;
+    [SerializeField] private bool useFluid; //Para fluido
 
     void Start()
     {
@@ -29,6 +29,7 @@ public class MovePhysics : MonoBehaviour
         MyVector drag = new MyVector(0, 0);
         MyVector friction = new MyVector(0, 0);
 
+        //Bloque fluido
         if (useFluid)
         {
             // fluid friction

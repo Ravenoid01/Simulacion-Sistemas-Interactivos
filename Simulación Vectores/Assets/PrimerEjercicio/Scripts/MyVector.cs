@@ -7,6 +7,9 @@ public class MyVector
 {
     public float x;
     public float y;
+
+    public float radius { get => x; set => x = value; }
+    public float angle { get => y; set => y = value; }
     public float magnitude => Mathf.Sqrt(x * x + y * y);
     public MyVector normalized
     {
@@ -49,6 +52,10 @@ public class MyVector
     public void Draw(Color color, MyVector origin)
     {
         Debug.DrawLine(new Vector3(origin.x, origin.y, 0), new Vector3(x+ origin.x, y+ origin.y, 0), color);
+    }
+    public MyVector FromPolarToCartesian()
+    {
+        return new MyVector(x * Mathf.Cos(y), x * Mathf.Sin(y));
     }
 
     public static MyVector operator+(MyVector a, MyVector b)
